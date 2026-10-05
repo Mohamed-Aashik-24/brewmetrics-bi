@@ -1,0 +1,28 @@
+table Dim_Store
+	lineageTag: 0bcfac97-587d-4168-95bf-b77891510fba
+
+	column 'Store Format'
+		dataType: string
+		lineageTag: f7d3f496-6dbe-42af-9ef7-a7ca39d21cae
+		summarizeBy: none
+		sourceColumn: Store Format
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Store = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\OneDrive - Kumaraguru College of Technology\Assignment\BI\Mini project 1\brewmetrics_sales.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"sale_id", Int64.Type}, {"date", type date}, {"city", type text}, {"store_format", type text}, {"category", type text}, {"item", type text}, {"quantity", Int64.Type}, {"unit_price", Int64.Type}, {"sales_amount", type number}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"store_format"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"store_format", "Store Format"}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

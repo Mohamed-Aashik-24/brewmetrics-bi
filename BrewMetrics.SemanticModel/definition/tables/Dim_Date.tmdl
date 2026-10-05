@@ -1,0 +1,36 @@
+table Dim_Date
+	lineageTag: 97cb9a1f-3e20-40e7-87f1-082a09336915
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d2a4157f-2c79-4c5c-afc8-670ee7e1a589
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 7c487919-8b4c-4437-9ef7-26d71a332752
+			defaultHierarchy: LocalDateTable_a5fa79c6-16db-4cb0-8e2f-bcc8593269a2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Dim_Date = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\OneDrive - Kumaraguru College of Technology\Assignment\BI\Mini project 1\brewmetrics_sales.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"sale_id", Int64.Type}, {"date", type date}, {"city", type text}, {"store_format", type text}, {"category", type text}, {"item", type text}, {"quantity", Int64.Type}, {"unit_price", Int64.Type}, {"sales_amount", type number}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"date"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"date", "Date"}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

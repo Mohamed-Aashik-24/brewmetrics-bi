@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "BrewMetrics"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5292acdb-1ac2-461b-b177-69254c75b333"
+  }
+}

@@ -1,0 +1,37 @@
+table Dim_Product
+	lineageTag: 0380acca-eb1d-4b9e-831b-dba7c87f454a
+
+	column Category
+		dataType: string
+		lineageTag: c5897354-3c0f-4a13-b352-3253d61d7fc3
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: 642e510f-0d58-48d2-b07c-1c3058760e75
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Product = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\OneDrive - Kumaraguru College of Technology\Assignment\BI\Mini project 1\brewmetrics_sales.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"sale_id", Int64.Type}, {"date", type date}, {"city", type text}, {"store_format", type text}, {"category", type text}, {"item", type text}, {"quantity", Int64.Type}, {"unit_price", Int64.Type}, {"sales_amount", type number}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"sale_id", "category", "item"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Removed Other Columns",{"sale_id"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"category", "Category"}, {"item", "Item"}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns", {"Category"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
