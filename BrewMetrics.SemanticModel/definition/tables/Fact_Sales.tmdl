@@ -66,6 +66,12 @@ table Fact_Sales
 
 		annotation PBI_FormatHint = {"currencyCulture":"mni-IN"}
 
+	measure 'Total Quantity' =
+			
+			SUM(Fact_Sales[quantity])
+		formatString: 0
+		lineageTag: 9cb5bac1-0464-415d-8958-fdc5955c70fe
+
 	column sale_id
 		dataType: int64
 		formatString: 0

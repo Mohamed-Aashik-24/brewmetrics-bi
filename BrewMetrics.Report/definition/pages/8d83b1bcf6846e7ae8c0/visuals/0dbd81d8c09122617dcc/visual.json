@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "0dbd81d8c09122617dcc",
+  "position": {
+    "x": 100.59283796904448,
+    "y": 0,
+    "z": 1,
+    "height": 161.41641441544348,
+    "width": 1752.1868753212632,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "BrewMetrics Coffee Co.",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "40pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Sales & Performance Dashboard",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "40pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

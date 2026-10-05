@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "021f3a8875f7c71e2b59",
+  "name": "5778466b5836d8dd0b6b",
   "position": {
-    "x": 49.175537009166781,
-    "y": 208.0503488849364,
-    "z": 0,
-    "height": 141.85251060336572,
-    "width": 247.76905185387878,
-    "tabOrder": 0
+    "x": 48.546144121365359,
+    "y": 401.96207332490513,
+    "z": 3,
+    "height": 163.11504424778761,
+    "width": 248.55625790139064,
+    "tabOrder": 3
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "Fact_Sales"
                     }
                   },
-                  "Property": "Average Transaction Value"
+                  "Property": "Total Sales"
                 }
               },
-              "queryRef": "Fact_Sales.Average Transaction Value",
-              "nativeQueryRef": "Average Transaction Value"
+              "queryRef": "Fact_Sales.Total Sales",
+              "nativeQueryRef": "Total Sales"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "Fact_Sales"
                   }
                 },
-                "Property": "Average Transaction Value"
+                "Property": "Total Sales"
               }
             },
             "direction": "Descending"
@@ -56,7 +56,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "8ecfa914ec2172f0bd30",
+        "name": "6b72aa88f302abdce6fb",
         "field": {
           "Measure": {
             "Expression": {
@@ -64,7 +64,7 @@
                 "Entity": "Fact_Sales"
               }
             },
-            "Property": "Average Transaction Value"
+            "Property": "Total Sales"
           }
         },
         "type": "Advanced"

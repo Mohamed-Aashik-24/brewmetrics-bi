@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "021f3a8875f7c71e2b59",
+  "name": "9e585f00046b2d6b09b8",
   "position": {
-    "x": 49.175537009166781,
-    "y": 208.0503488849364,
-    "z": 0,
-    "height": 141.85251060336572,
-    "width": 247.76905185387878,
-    "tabOrder": 0
+    "x": 48.546144121365359,
+    "y": 598.08849557522115,
+    "z": 10,
+    "height": 151.46396965865992,
+    "width": 248.55625790139064,
+    "tabOrder": 10
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "Fact_Sales"
                     }
                   },
-                  "Property": "Average Transaction Value"
+                  "Property": "MoM Growth %"
                 }
               },
-              "queryRef": "Fact_Sales.Average Transaction Value",
-              "nativeQueryRef": "Average Transaction Value"
+              "queryRef": "Fact_Sales.MoM Growth %",
+              "nativeQueryRef": "MoM Growth %"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "Fact_Sales"
                   }
                 },
-                "Property": "Average Transaction Value"
+                "Property": "MoM Growth %"
               }
             },
             "direction": "Descending"
@@ -52,23 +52,5 @@
       }
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8ecfa914ec2172f0bd30",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_Sales"
-              }
-            },
-            "Property": "Average Transaction Value"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
