@@ -55,6 +55,17 @@ table Fact_Sales
 			)
 		lineageTag: 0f5f4e83-2cf6-4e8a-ae78-98cb67714c38
 
+	measure 'Average Transaction Value' =
+			
+			DIVIDE(
+			    [Total Sales],
+			    DISTINCTCOUNT(Fact_Sales[sale_id])
+			)
+		formatString: "₹"\ #,0.00;-"₹"\ #,0.00;"₹"\ #,0.00
+		lineageTag: 0d40bd64-38e3-4207-9501-6665581be9fc
+
+		annotation PBI_FormatHint = {"currencyCulture":"mni-IN"}
+
 	column sale_id
 		dataType: int64
 		formatString: 0
