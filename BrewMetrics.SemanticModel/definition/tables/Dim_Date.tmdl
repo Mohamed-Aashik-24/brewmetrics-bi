@@ -17,6 +17,32 @@ table Dim_Date
 
 		annotation UnderlyingDateTimeDataType = Date
 
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2fdca0b2-28d4-4a41-ad09-7ff7f2af49b6
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: c3db80f8-bc8d-403d-82bb-57683bf46aab
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: a7ab00ee-600f-4cf3-a030-8caf4dbde695
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Dim_Date = m
 		mode: import
 		source =
@@ -26,9 +52,12 @@ table Dim_Date
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"sale_id", Int64.Type}, {"date", type date}, {"city", type text}, {"store_format", type text}, {"category", type text}, {"item", type text}, {"quantity", Int64.Type}, {"unit_price", Int64.Type}, {"sales_amount", type number}}),
 				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"date"}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"date", "Date"}}),
-				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns")
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns"),
+				    #"Inserted Year" = Table.AddColumn(#"Removed Duplicates", "Year", each Date.Year([Date]), Int64.Type),
+				    #"Inserted Month" = Table.AddColumn(#"Inserted Year", "Month", each Date.Month([Date]), Int64.Type),
+				    #"Inserted Month Name" = Table.AddColumn(#"Inserted Month", "Month Name", each Date.MonthName([Date]), type text)
 				in
-				    #"Removed Duplicates"
+				    #"Inserted Month Name"
 
 	annotation PBI_NavigationStepName = Navigation
 
